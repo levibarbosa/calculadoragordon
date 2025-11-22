@@ -1,0 +1,280 @@
+/* 
+  ARQUIVO DE ESTILOS (CSS)
+  Aqui definimos a aparência do site: cores, fontes, espaçamentos e layouts.
+*/
+
+/* 
+  :root define variáveis globais. 
+  É como criar atalhos para cores e valores que usamos em vários lugares.
+  Se quisermos mudar a cor principal do site, mudamos apenas aqui!
+*/
+:root {
+  /* Cores Principais */
+  --primary: #4f46e5;       /* Roxo índigo vibrante para botões e destaques */
+  --primary-hover: #4338ca; /* Uma versão mais escura para quando passar o mouse */
+  
+  /* Cores de Fundo */
+  --bg-gradient-start: #f8fafc; /* Cor inicial do degradê de fundo */
+  --bg-gradient-end: #e2e8f0;   /* Cor final do degradê de fundo */
+  --card-bg: #ffffff;           /* Fundo branco para o cartão da calculadora */
+  --input-bg: #f8fafc;          /* Fundo bem clarinho para os campos de texto */
+
+  /* Cores de Texto */
+  --text-main: #0f172a;    /* Cor escura para texto principal (quase preto) */
+  --text-muted: #64748b;   /* Cor cinza para textos secundários */
+  
+  /* Cores de Feedback (Avisos) */
+  --success: #10b981;      /* Verde para sucesso/barato */
+  --danger: #ef4444;       /* Vermelho para erro/caro */
+  
+  /* Bordas e Sombras */
+  --border-color: #e2e8f0; /* Cinza claro para bordas */
+  
+  /* Sombras para dar efeito de profundidade (3D) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* 
+  O seletor * (asterisco) seleciona TODOS os elementos da página.
+  box-sizing: border-box faz com que o tamanho dos elementos inclua a borda e o preenchimento.
+  Isso evita que os elementos fiquem maiores do que o esperado.
+*/
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif; /* Define a fonte do site */
+  /* Cria um fundo degradê diagonal */
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-main);
+  
+  /* Centraliza o conteúdo na tela */
+  display: flex;
+  min-height: 100vh; /* Ocupa pelo menos 100% da altura da tela */
+  align-items: center;     /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  
+  margin: 0;
+  padding: 20px;
+  line-height: 1.5; /* Altura da linha para melhor leitura */
+}
+
+/* Container principal para limitar a largura do conteúdo */
+.container {
+  width: 100%;
+  max-width: 800px; /* Largura máxima de 800 pixels */
+  margin: 0 auto;   /* Centraliza o container */
+}
+
+/* Estilo do cartão principal (o retângulo branco) */
+.card {
+  background: var(--card-bg);
+  border-radius: 16px; /* Bordas arredondadas */
+  box-shadow: var(--shadow-lg); /* Sombra grande para destacar */
+  padding: 32px; /* Espaço interno */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Borda sutil */
+}
+
+header {
+  margin-bottom: 32px;
+  text-align: center; /* Centraliza o texto do cabeçalho */
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700; /* Negrito */
+  margin: 0 0 8px;
+  color: var(--text-main);
+  letter-spacing: -0.025em; /* Aproxima levemente as letras */
+}
+
+p.subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 
+  GRID LAYOUT
+  Cria uma grade com 2 colunas de tamanho igual (1fr = 1 fração).
+  Isso faz os campos ficarem lado a lado.
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; /* Espaço entre os itens da grade */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column; /* Coloca o rótulo (label) em cima do campo (input) */
+  gap: 6px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* Estilo dos campos de entrada (inputs) e seleção (selects) */
+input, select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  font-size: 14px;
+  color: var(--text-main);
+  transition: all 0.2s ease; /* Animação suave ao mudar estados */
+  font-family: inherit;
+}
+
+/* Quando o usuário clica no campo (foco) */
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary); /* Muda a borda para roxo */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); /* Adiciona um brilho roxo */
+  background: #fff;
+}
+
+/* Classe utilitária para ocupar a largura total (as 2 colunas) */
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Estilo base dos botões */
+button {
+  flex: 1; /* Faz os botões ocuparem espaço igual */
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer; /* Mostra a mãozinha ao passar o mouse */
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+/* Botão Calcular (Principal) */
+#calc {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+}
+
+#calc:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px); /* Move levemente para cima */
+}
+
+/* Botão Limpar (Secundário) */
+#reset {
+  background: #f1f5f9;
+  color: var(--text-muted);
+}
+
+#reset:hover {
+  background: #e2e8f0;
+  color: var(--text-main);
+}
+
+/* Cartão de Resultado */
+.result-card {
+  margin-top: 32px;
+  padding: 24px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  animation: fadeIn 0.3s ease-out; /* Animação de entrada */
+}
+
+.result-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.result-content {
+  font-size: 15px;
+  color: var(--text-main);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between; /* Separa rótulo e valor */
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.result-row:last-child {
+  border-bottom: none;
+}
+
+.result-label {
+  color: var(--text-muted);
+}
+
+.result-value {
+  font-weight: 600;
+}
+
+/* Badges de Status (Caro/Barato) */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px; /* Borda totalmente redonda (pílula) */
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.status-cheap {
+  background: #dcfce7; /* Fundo verde claro */
+  color: #166534;      /* Texto verde escuro */
+}
+
+.status-expensive {
+  background: #fee2e2; /* Fundo vermelho claro */
+  color: #991b1b;      /* Texto vermelho escuro */
+}
+
+footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* 
+  RESPONSIVIDADE
+  Quando a tela for menor que 640px (celulares),
+  muda o grid para ter apenas 1 coluna.
+*/
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { padding: 20px; }
+}
+
+/* Definição da animação de aparecer (fadeIn) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

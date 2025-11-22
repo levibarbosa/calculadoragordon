@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<!-- 
+  ARQUIVO HTML
+  Este arquivo define a ESTRUTURA da página (esqueleto).
+  Ele organiza onde fica o título, os campos de entrada e os botões.
+-->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de Valor Intrínseco</title>
+
+  <!-- Importando fontes bonitas do Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- 
+    LINK PARA O CSS
+    Aqui conectamos o arquivo de estilos que criamos (style.css).
+    É assim que a página sabe como deve ser a aparência.
+  -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Container principal que centraliza tudo -->
+  <div class="container">
+
+    <!-- O cartão branco principal -->
+    <div class="card">
+      <header>
+        <h1>Calculadora de Valor Intrínseco</h1>
+        <p class="subtitle">Avalie se uma ação está cara ou barata usando o Modelo de Gordon ou P/L Alvo.</p>
+      </header>
+
+      <!-- Grid para organizar os campos lado a lado -->
+      <div class="grid">
+
+        <!-- Cada 'form-group' é um par de Rótulo + Campo -->
+        <div class="form-group">
+          <label for="price">Preço Atual (R$)</label>
+          <input id="price" type="number" step="0.01" placeholder="Ex: 12.50" />
+        </div>
+
+        <div class="form-group">
+          <label for="eps">LPA / Fluxo por Ação (R$)</label>
+          <input id="eps" type="number" step="0.01" placeholder="Ex: 1.23" />
+        </div>
+
+        <div class="form-group">
+          <label for="g">Crescimento Esperado (g) - Anual (%)</label>
+          <input id="g" type="number" step="0.01" placeholder="Ex: 4.5" />
+        </div>
+
+        <div class="form-group">
+          <label for="r">Retorno Exigido (r) - Anual (%)</label>
+          <input id="r" type="number" step="0.01" placeholder="Ex: 10.0" />
+        </div>
+
+        <div class="form-group">
+          <label for="mos">Margem de Segurança (%)</label>
+          <input id="mos" type="number" step="1" value="25" />
+        </div>
+
+        <div class="form-group">
+          <label for="years">Horizonte de Análise (Anos)</label>
+          <input id="years" type="number" step="1" min="0" placeholder="Ex: 5 (Opcional)" />
+        </div>
+
+        <!-- Campo que ocupa a largura total (full-width) -->
+        <div class="form-group full-width">
+          <label for="mode">Método de Avaliação</label>
+          <select id="mode">
+            <option value="gordon">Modelo de Gordon (Crescimento Perpétuo)</option>
+            <option value="simple_pe">Múltiplo de P/L Alvo</option>
+          </select>
+        </div>
+
+        <!-- Este campo começa escondido (display: none) e só aparece se escolher P/L -->
+        <div id="peBox" class="form-group full-width" style="display:none;">
+          <label for="targetPE">P/L Alvo Desejado</label>
+          <input id="targetPE" type="number" step="0.1" placeholder="Ex: 15" />
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="full-width actions">
+          <button id="calc">Calcular Valor</button>
+          <button id="reset">Limpar Dados</button>
+        </div>
+      </div>
+
+      <!-- Área onde o resultado vai aparecer (começa escondida) -->
+      <div class="result-card" id="result" style="display:none;">
+        <div class="result-header">Resultado da Análise</div>
+        <div id="out" class="result-content">
+          <!-- O JavaScript vai escrever o resultado aqui dentro -->
+        </div>
+      </div>
+
+      <footer>
+        <p>Nota: Modelos são estimativas baseadas em suas premissas. Não constitui recomendação de investimento.</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- 
+    LINK PARA O JAVASCRIPT
+    Aqui conectamos o arquivo de lógica (script.js).
+    Geralmente colocamos no final do body para não travar o carregamento visual da página.
+  -->
+  <script src="script.js"></script>
+</body>
+
+</html>
